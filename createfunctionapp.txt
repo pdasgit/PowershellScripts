@@ -1,0 +1,15 @@
+$ResourceLocation = "West US"
+$ResourceName = "just-an-api"
+$ResourceGroupName = "demo"
+$PropertiesObject = @{
+    # serverFarmId points to the App Service Plan resource id
+    serverFarmId = "/subscriptions/SUBSCRIPTION-GUID/resourceGroups/demo/providers/Microsoft.Web/serverfarms/plan1"
+}
+
+New-AzureRmResource -Location $ResourceLocation `
+    -PropertyObject $PropertiesObject `
+    -ResourceGroupName $ResourceGroupName `
+    -ResourceType Microsoft.Web/sites `
+    -ResourceName "just-an-api/$ResourceName" `
+    -Kind 'functionapp' `
+    -ApiVersion 2016-08-01 -Force
